@@ -1,0 +1,5 @@
+=login.jsp
+loginPage=login.jsp
+login=LoginServlet
+CVPage=CVPage.jsp
+CreateAccountPage=CreateAccountServlet
