@@ -5,24 +5,24 @@
  */
 package anpdt.controller;
 
-import anpdt.errors.Errors;
+import anpdt.registration.RegistrationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import anpdt.registration.RegistrationDAO;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ASUS
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "RememberPasswordServlet", urlPatterns = {"/RememberPasswordServlet"})
+public class RememberPasswordServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,38 +36,27 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String username = request.getParameter("txtUsername");
-        String password = request.getParameter("txtPassword");
-        String rememberBox = request.getParameter("remeberPassword");
-        HttpSession session = request.getSession(true);
-        Errors errors = new Errors();
-        String url="";
+        String url = "loginPage";
         try {
-            RegistrationDAO dao = new RegistrationDAO();
-            boolean result = dao.checkLogin(username, password);
-            if(result){
-                url = "CVPage";
-                dao.getFullname(username);
-                String fullname = dao.getFullnameOfUser();
-                session.setAttribute("FULLNAME", fullname);
-                session.removeAttribute("LOGIN_ERROR");
-                if(rememberBox != null){
-                    Cookie cookie = new Cookie(username, password);
-                    cookie.setMaxAge(60*60);
-                    response.addCookie(cookie);
+            Cookie[] cookies = request.getCookies();
+            if(cookies != null){
+                for(Cookie cookie: cookies){
+                    String username = cookie.getName();
+                    String password = cookie.getValue();
+                    RegistrationDAO dao = new RegistrationDAO();
+                    dao.checkLogin(username, password);
+                    boolean result = dao.checkLogin(username, password);
+                    if(result){
+                        url = "CVPage";
+                    }
                 }
-            }else{
-                errors.setWrongUsernamePassword("Username or Password is not correct");
-                session.setAttribute("LOGIN_ERROR", errors);
-                url = "loginPage";
             }
         }catch(SQLException ex){
-            log("LoginServlet _ SQL "+ex.getMessage());
+            log("ProcessReuqestServlet _ SQL "+ex.getMessage());
         }catch(NamingException ex){
-            log("LoginServlet _ Naming "+ex.getMessage());
+            log("ProcessReuqestServlet _ Naming "+ex.getMessage());
         }
-        finally {
+        finally{
             response.sendRedirect(url);
         }
     }

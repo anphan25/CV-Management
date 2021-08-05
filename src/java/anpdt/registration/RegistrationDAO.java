@@ -17,27 +17,28 @@ import anpdt.utils.DBHelper;
  *
  * @author ASUS
  */
-public class RegistrationDAO implements Serializable{
+public class RegistrationDAO implements Serializable {
+
     public boolean checkLogin(String username, String password)
-                throws SQLException, NamingException{
+            throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        try{
+        try {
             con = DBHelper.makeConnection();
-            if(con != null){
+            if (con != null) {
                 String sql = "select username "
-                        +"from Registration "
-                        +"where username =? and password =?";
+                        + "from Registration "
+                        + "where username =? and password =?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
                 stm.setString(2, password);
                 rs = stm.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     return true;
                 }
             }
-        }finally{
+        } finally {
             if (con != null) {
                 con.close();
             }
@@ -49,5 +50,65 @@ public class RegistrationDAO implements Serializable{
             }
         }
         return false;
+    }
+
+    private String fullnameOfUser;
+
+    public String getFullnameOfUser() {
+        return fullnameOfUser;
+    }
+
+    public void getFullname(String username)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            if (con != null) {
+                String sql = "select fullname from Registration where username = ? ";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    this.fullnameOfUser = rs.getString("fullname");
+                }
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+    }
+
+    public void createAccount(RegistrationDTO dto)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBHelper.makeConnection();
+            if (con != null) {
+                String sql = "insert into Registration(username, password, fullname, role) "
+                        + "values(?,?,?,?)";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, dto.getUsername());
+                stm.setString(2, dto.getPassword());
+                stm.setString(3, dto.getFullname());
+                stm.setString(4, dto.getRole());
+                stm.executeUpdate();
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
     }
 }

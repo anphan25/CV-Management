@@ -1,5 +1,6 @@
-=login.jsp
+=RememberPasswordServlet
 loginPage=login.jsp
 login=LoginServlet
 CVPage=CVPage.jsp
-CreateAccountPage=CreateAccountServlet
+createAccountPage=register.jsp
+createAccount=CreateAccountServlet

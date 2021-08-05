@@ -6,23 +6,27 @@
 package anpdt.controller;
 
 import anpdt.errors.Errors;
+import anpdt.registration.RegistrationDAO;
+import anpdt.registration.RegistrationDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Map;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import anpdt.registration.RegistrationDAO;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ASUS
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "CreateAccountServlet", urlPatterns = {"/CreateAccountServlet"})
+public class CreateAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,39 +40,58 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         String username = request.getParameter("txtUsername");
         String password = request.getParameter("txtPassword");
-        String rememberBox = request.getParameter("remeberPassword");
-        HttpSession session = request.getSession(true);
+        String confirm = request.getParameter("txtConfirmPassword");
+        String fullname = request.getParameter("txtFullname");
+        String acceptBox = request.getParameter("acceptBox");
+        ServletContext context = request.getServletContext();
+        Map<String,String> roadmap = (Map<String,String>) context.getAttribute("ROADMAP");
         Errors errors = new Errors();
-        String url="";
+        boolean foundErr = false;
+        String url = roadmap.get("createAccountPage");
         try {
-            RegistrationDAO dao = new RegistrationDAO();
-            boolean result = dao.checkLogin(username, password);
-            if(result){
-                url = "CVPage";
-                dao.getFullname(username);
-                String fullname = dao.getFullnameOfUser();
-                session.setAttribute("FULLNAME", fullname);
-                session.removeAttribute("LOGIN_ERROR");
-                if(rememberBox != null){
-                    Cookie cookie = new Cookie(username, password);
-                    cookie.setMaxAge(60*60);
-                    response.addCookie(cookie);
-                }
-            }else{
-                errors.setWrongUsernamePassword("Username or Password is not correct");
-                session.setAttribute("LOGIN_ERROR", errors);
-                url = "loginPage";
+            if(username.trim().length() < 6 || username.trim().length() > 12){
+                foundErr = true;
+                errors.setUsernameLengthErr("Username is required 6 to 12 chars");
             }
+            if(password.trim().length() < 6 || password.trim().length() > 20){
+                foundErr = true;
+                errors.setPasswordLengthErr("Password is required 6 to 20 chars");
+            }else if(!confirm.trim().equals(password.trim())){
+                foundErr = true;
+                errors.setConfirmNotMatched("Confirm must be matched with password");
+            }
+            if(fullname.trim().length() < 1 || fullname.trim().length() > 50){
+                foundErr = true;
+                errors.setFullnameLengthErr("Full name is required 1 to 50 chars");
+            }
+            if(acceptBox == null){
+                foundErr = true;
+                errors.setNotCheckedAcceptBox("Please check this box");
+            }
+            if(foundErr){
+                request.setAttribute("REGISTER_ERROR", errors);
+            }else{
+                RegistrationDAO dao = new RegistrationDAO();
+                RegistrationDTO dto = new RegistrationDTO(username, password, fullname, "User");
+                dao.createAccount(dto);
+                url = roadmap.get("loginPage");
+            }
+            
         }catch(SQLException ex){
-            log("LoginServlet _ SQL "+ex.getMessage());
+            String msg = ex.getMessage();
+            log("CreateAccountServlet _ SQL "+ ex.getMessage());
+            if(msg.contains("duplicate")){
+                errors.setUsernameIsExisted(username + " is existed !!!");
+                request.setAttribute("REGISTER_ERROR", errors);
+            }
         }catch(NamingException ex){
-            log("LoginServlet _ Naming "+ex.getMessage());
+            log("CreateAccountServlet _ Naming"+ ex.getMessage());
         }
         finally {
-            response.sendRedirect(url);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

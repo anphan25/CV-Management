@@ -15,8 +15,7 @@
         <title>Login Page</title>
     </head>
     <body>
-            
-             <div class="container">
+            <div class="container">
             <form action="login" method="POST">
                 <h1>LOGIN</h1>
                 <input class="input-field" type="text" name="txtUsername" value="" placeholder="Username"/><br/>
@@ -32,7 +31,7 @@
                 </div>
                 <input class="login-button" type="submit" value="Login" />
                 <div class="create-link">
-                <a href="CreateAccountPage">Create an Account</a>
+                <a href="createAccountPage">Create an Account</a>
                 </div>
             </form>
            </div>
