@@ -5,13 +5,58 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="css/CVPageStyle.css" />
+        <title>CV Page</title>
     </head>
     <body>
-        <h1>CVPage</h1>
+        <c:set var="userCV" value="${sessionScope.USER_CV}"/>
+        <header>
+            <p id="text-logo">
+                <span id="CV-text">CV</span> <span id="Project-text">Project </span>
+            </p>
+            <div id="function-button">
+                <form>
+                    <input id="update-button" type="submit" value="Update" />
+                </form>
+                <form action="logout">
+                    <input id="logout-button" type="submit" value="Log Out" />
+                </form>
+            </div>
+        </header>
+        <p class="title">YOUR CV</p>
+        <div class="container">
+            <div class="header">
+                <div class="full-name">${userCV.fullname}</div>
+                <div class="Job">${userCV.job}</div>
+            </div>
+            <div class="body">
+                <div class="body-left">
+                    <div class="img">
+                        <img src="image/messi.jpg" alt="" />
+                    </div>
+                    <div class="left-infor">
+                        <div class="left-infor-div">
+                            <p class="left-infor-text">Birthday</p>
+                            ${userCV.birthday}
+                            <p class="left-infor-text">Gender</p>
+                            ${userCV.gender}
+                            <p class="left-infor-text">Phone Number</p>
+                            ${userCV.phoneNumber}
+                            <p class="left-infor-text">Email</p>
+                            ${userCV.email}
+                            <p class="left-infor-text">Address</p>
+                            ${userCV.address}
+                        </div>
+                    </div>
+                </div>
+                <div class="body-right"></div>
+            </div>
+        </div>
+        <footer></footer>
     </body>
 </html>

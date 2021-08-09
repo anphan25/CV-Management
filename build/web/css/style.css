@@ -11,7 +11,7 @@ html{
 body{
     font-size: 1.6rem;
     font-family: sans-serif;
-    background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(background-phong-canh-45.jpg);   
+    background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url(../image/background-phong-canh-45.jpg);   
     background-position: center;
     background-size: cover;
     max-height: 100vh
@@ -57,7 +57,7 @@ h1{
   width: 110px;
   height: 35px;
   margin: 10px 85px;
-  background: linear-gradient(to right, #ff105f, #ffad06);
+  background: linear-gradient(to right, #28b487, #7dd56f);
   border-radius: 30px;
   border: 0;
   outline: none;
@@ -74,5 +74,5 @@ h1{
 
 a{
     text-decoration: none;
-    color:#ff105f;
+    color:#7dd56f;
 }

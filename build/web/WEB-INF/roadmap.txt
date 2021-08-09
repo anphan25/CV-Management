@@ -4,3 +4,4 @@ login=LoginServlet
 CVPage=CVPage.jsp
 createAccountPage=register.jsp
 createAccount=CreateAccountServlet
+logout=LogoutServlet

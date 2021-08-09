@@ -5,6 +5,8 @@
  */
 package anpdt.controller;
 
+import anpdt.CV.CVDAO;
+import anpdt.CV.CVDTO;
 import anpdt.errors.Errors;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import anpdt.registration.RegistrationDAO;
+import java.util.ArrayList;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
@@ -51,7 +54,11 @@ public class LoginServlet extends HttpServlet {
                 dao.getFullname(username);
                 String fullname = dao.getFullnameOfUser();
                 session.setAttribute("FULLNAME", fullname);
-                session.removeAttribute("LOGIN_ERROR");
+//                session.removeAttribute("LOGIN_ERROR");
+                CVDAO cvDAO = new CVDAO();
+                cvDAO.uploadInfor(username);
+                CVDTO cvDTO = cvDAO.getUserCV();
+                session.setAttribute("USER_CV", cvDTO);
                 if(rememberBox != null){
                     Cookie cookie = new Cookie(username, password);
                     cookie.setMaxAge(60*60);
