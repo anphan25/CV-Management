@@ -5,6 +5,8 @@
  */
 package anpdt.controller;
 
+import anpdt.CV.CVDAO;
+import anpdt.CV.CVDTO;
 import anpdt.registration.RegistrationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,26 +40,30 @@ public class RememberPasswordServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = "loginPage";
+        HttpSession session =request.getSession();
         try {
             Cookie[] cookies = request.getCookies();
-            if(cookies != null){
-                for(Cookie cookie: cookies){
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
                     String username = cookie.getName();
                     String password = cookie.getValue();
                     RegistrationDAO dao = new RegistrationDAO();
                     dao.checkLogin(username, password);
                     boolean result = dao.checkLogin(username, password);
-                    if(result){
+                    if (result) {
                         url = "CVPage";
+                        CVDAO cvDAO = new CVDAO();
+                        cvDAO.uploadInfor(username);
+                        CVDTO cvDTO = cvDAO.getUserCV();
+                        session.setAttribute("USER_CV", cvDTO);
                     }
                 }
             }
-        }catch(SQLException ex){
-            log("ProcessReuqestServlet _ SQL "+ex.getMessage());
-        }catch(NamingException ex){
-            log("ProcessReuqestServlet _ Naming "+ex.getMessage());
-        }
-        finally{
+        } catch (SQLException ex) {
+            log("ProcessReuqestServlet _ SQL " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("ProcessReuqestServlet _ Naming " + ex.getMessage());
+        } finally {
             response.sendRedirect(url);
         }
     }

@@ -39,42 +39,46 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String username = request.getParameter("txtUsername");
         String password = request.getParameter("txtPassword");
         String rememberBox = request.getParameter("remeberPassword");
         HttpSession session = request.getSession(true);
         Errors errors = new Errors();
-        String url="";
+        String url = "";
         try {
             RegistrationDAO dao = new RegistrationDAO();
             boolean result = dao.checkLogin(username, password);
-            if(result){
-                url = "CVPage";
-                dao.getFullname(username);
-                String fullname = dao.getFullnameOfUser();
-                session.setAttribute("FULLNAME", fullname);
-//                session.removeAttribute("LOGIN_ERROR");
+            if (result) {
                 CVDAO cvDAO = new CVDAO();
-                cvDAO.uploadInfor(username);
-                CVDTO cvDTO = cvDAO.getUserCV();
-                session.setAttribute("USER_CV", cvDTO);
-                if(rememberBox != null){
+                boolean isAdmin = cvDAO.isAdmin(username);
+                if (isAdmin == true) {
+                    cvDAO.loadAccounts();
+                    ArrayList<CVDTO> accounts = cvDAO.getAccoutns();
+                    session.setAttribute("ACCOUNTS_LIST", accounts);
+                    url = "adminPage";
+                } else {
+                    cvDAO.uploadInfor(username);
+                    CVDTO cvDTO = cvDAO.getUserCV();
+                    session.setAttribute("USER_CV", cvDTO);
+                    url = "CVPage";
+                }
+
+                if (rememberBox != null) {
                     Cookie cookie = new Cookie(username, password);
-                    cookie.setMaxAge(60*60);
+                    cookie.setMaxAge(60 * 60);
                     response.addCookie(cookie);
                 }
-            }else{
+            } else {
                 errors.setWrongUsernamePassword("Username or Password is not correct");
                 session.setAttribute("LOGIN_ERROR", errors);
                 url = "loginPage";
             }
-        }catch(SQLException ex){
-            log("LoginServlet _ SQL "+ex.getMessage());
-        }catch(NamingException ex){
-            log("LoginServlet _ Naming "+ex.getMessage());
-        }
-        finally {
+        } catch (SQLException ex) {
+            log("LoginServlet _ SQL " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("LoginServlet _ Naming " + ex.getMessage());
+        } finally {
             response.sendRedirect(url);
         }
     }

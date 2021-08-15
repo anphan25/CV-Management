@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/CVPageStyle.css" />
+        <script src="https://kit.fontawesome.com/1b1fb57155.js" crossorigin="anonymous"></script>
         <title>CV Page</title>
     </head>
     <body>
@@ -54,9 +55,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="body-right"></div>
+                <div class="body-right">
+                    <div class="right-div-content">
+                        <h1>Experience</h1>
+                        <p>
+                            ${userCV.expierence}
+                        </p>
+                    </div>
+                    <div class="right-div-content">
+                        <h1>Education</h1>
+                        <p>
+                            ${userCV.education}
+                        </p>
+                    </div>
+                    <div class="right-div-content">
+                        <h1>Certification</h1>
+                        <p>
+                            ${userCV.certificate}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-        <footer></footer>
+        <footer>
+            <a href="https://www.facebook.com/AnBM.02/"><i class="fab fa-facebook"></i></a>
+            <a href="https://github.com/anphan25"><i class="fab fa-github"></i></a>
+        </footer>
     </body>
 </html>

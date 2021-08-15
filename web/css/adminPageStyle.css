@@ -1,0 +1,125 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 15, 2021, 3:46:05 PM
+    Author     : ASUS
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  background-color: #343a40;
+  justify-content: space-between;
+  align-items: center;
+  /* position: fixed; */
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+#CV-text {
+  font-size: 50px;
+  color: #28b487;
+}
+
+#Project-text {
+  font-size: 50px;
+  color: #7dd56f;
+}
+
+#text-logo {
+  padding: 15px 50px;
+}
+
+#logout-button {
+  width: 110px;
+  height: 35px;
+  background: linear-gradient(to right, #28b487, #7dd56f);
+  border-radius: 30px;
+  border: 0;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 50px;
+}
+
+body {
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  display: flex;
+  gap: 0 30px;
+  justify-content: center;
+  font-size: 70px;
+  padding: 50px;
+  background-color: #343a40;
+}
+
+.fa-facebook:hover {
+  color: #295396;
+}
+
+.fa-github:hover {
+  color: #800080;
+}
+
+footer a:visited {
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1100px;
+}
+
+.body-content {
+  flex-grow: 1;
+}
+
+#view-button {
+  width: 110px;
+  height: 35px;
+  background: linear-gradient(to right, #28b487, #7dd56f);
+  border-radius: 30px;
+  border: 0;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #343a40;
+}
+
+table thead {
+  background-color: #343a40;
+  color: white;
+}
+
+table thead th {
+  padding: 10px 80px;
+}
+
+table tbody td {
+  padding: 20px 0;
+}
+
+.container h2 {
+  color: #343a40;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

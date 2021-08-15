@@ -16,7 +16,7 @@ and open the template in the editor.
 
 header {
   display: flex;
-  background-color: black;
+  background-color: #343A40;
   justify-content: space-between;
   align-items: center;
   position: fixed;
@@ -77,7 +77,7 @@ body {
 
 .container {
   max-width: 1100px;
-  height: 900px;
+/*  height: 900px;*/
   margin: 0 auto;
   margin-top: 30px;
 }
@@ -95,7 +95,7 @@ body {
 
 .full-name {
   display: flex;
-  width: 40%;
+  width: 35%;
   height: 100%;
   color: #28b487;
   font-size: 30px;
@@ -105,7 +105,7 @@ body {
 
 .Job {
   display: flex;
-  width: 60%;
+  width: 65%;
   height: 100%;
   background-color: #28b487;
   color: white;
@@ -118,20 +118,23 @@ body {
 .body {
   margin-top: 30px;
   height: 100%;
+  display: flex;
 }
 
 .body-left {
-  width: 30%;
+  width: 35%;
   height: 100%;
 }
 
 .body-right {
-  width: 70%;
+  width: 65%;
+  height: 100%;
+  padding:0 60px;
 }
 
 .img {
   width: 100%;
-  height: 420px;
+  height: 520px;
 }
 img {
   width: 100%;
@@ -146,10 +149,46 @@ img {
   padding-top: 20px;
   color: #7dd56f;
   font-size: 20px;
+  font-weight: 600;
 }
 
 .left-infor-div {
   padding-left: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 70px;
   color: white;
+}
+
+
+footer {
+  display: flex;
+  gap: 0 30px;
+  justify-content: center;
+  font-size: 70px;
+  padding: 50px;
+  background-color: #343a40;
+}
+
+
+.fa-facebook:hover{
+    color:#295396 ;
+}
+
+.fa-github:hover{
+    color:#800080;
+}
+
+footer a:visited {
+  color: white;
+}
+
+.right-div-content {
+  border-top: 1px solid #28b487;
+  padding-bottom: 60px;
+  color: #343a40;
+}
+
+.right-div-content h1 {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  color: #28b487;
 }

@@ -69,4 +69,76 @@ public class CVDAO implements Serializable {
             }
         }
     }
+    
+    private ArrayList<CVDTO> accounts;
+    public ArrayList<CVDTO> getAccoutns(){
+        return accounts;
+}
+    
+    public void loadAccounts () throws SQLException, NamingException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try{
+            con = DBHelper.makeConnection();
+            if(con != null){
+                String sql = "select username, fullname from Registration";
+                stm = con.prepareStatement(sql);
+                rs = stm.executeQuery();
+                while(rs.next()){
+                    String username = rs.getString("username");
+                    String fullname = rs.getString("fullname");
+                    CVDTO dto = new CVDTO(username, fullname);
+                    if(this.accounts == null){
+                        this.accounts = new ArrayList<>();
+                    }
+                    this.accounts.add(dto);
+                }
+            }
+        }finally{
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+    }
+    
+    public boolean isAdmin(String username) throws SQLException, NamingException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try{
+            con = DBHelper.makeConnection();
+            if(con != null){
+                String sql = "select role from Registration where username = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    String role = rs.getString("role");
+                    if(role.equals("Admin")){
+                        return true;
+                    }
+                }
+            }
+        }finally{
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return false;
+    } 
 }

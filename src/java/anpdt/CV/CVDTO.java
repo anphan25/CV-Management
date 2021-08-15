@@ -28,6 +28,11 @@ public class CVDTO implements Serializable{
     public CVDTO() {
     }
 
+    public CVDTO(String username, String fullname) {
+        this.username = username;
+        this.fullname = fullname;
+    }
+    
     public CVDTO(String username, byte image, String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
         this.username = username;
         this.image = image;
