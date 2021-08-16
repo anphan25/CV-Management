@@ -7,15 +7,12 @@ package anpdt.controller;
 
 import anpdt.CV.CVDAO;
 import anpdt.CV.CVDTO;
-import anpdt.registration.RegistrationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ASUS
  */
-@WebServlet(name = "RememberPasswordServlet", urlPatterns = {"/RememberPasswordServlet"})
-public class RememberPasswordServlet extends HttpServlet {
+@WebServlet(name = "ViewCVServlet", urlPatterns = {"/ViewCVServlet"})
+public class ViewCVServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,39 +37,22 @@ public class RememberPasswordServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "loginPage";
-        HttpSession session =request.getSession();
+        String username = request.getParameter("usernameView");
+        String url = "";
         try {
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    String username = cookie.getName();
-                    String password = cookie.getValue();
-                    RegistrationDAO dao = new RegistrationDAO();
-                    dao.checkLogin(username, password);
-                    boolean result = dao.checkLogin(username, password);
-                    if (result) {
-                        CVDAO cvDAO = new CVDAO();
-                        boolean isAdmin = cvDAO.isAdmin(username);
-                        if(isAdmin == true){
-                            cvDAO.loadAccounts();
-                            ArrayList<CVDTO> accounts = cvDAO.getAccoutns();
-                            session.setAttribute("ACCOUNTS_LIST", accounts);
-                            url = "adminPage";
-                        }else{
-                            cvDAO.uploadInfor(username);
-                            CVDTO cvDTO = cvDAO.getUserCV();
-                            session.setAttribute("USER_CV", cvDTO);
-                            url = "CVPage";
-                        }
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            log("ProcessReuqestServlet _ SQL " + ex.getMessage());
-        } catch (NamingException ex) {
-            log("ProcessReuqestServlet _ Naming " + ex.getMessage());
-        } finally {
+            HttpSession session = request.getSession();
+            CVDAO cvDAO = new CVDAO();
+            cvDAO.uploadInfor(username);
+            CVDTO cvDTO = cvDAO.getUserCV();
+            session.setAttribute("USER_CV", cvDTO);
+            url = "CVPage";
+        }catch(SQLException ex){
+            log("ViewCVServlet _ SQL "+ex.getMessage());
+        }
+        catch(NamingException ex){
+            log("ViewCVServlet _ Naming "+ex.getMessage());
+        }
+        finally {
             response.sendRedirect(url);
         }
     }

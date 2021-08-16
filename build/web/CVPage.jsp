@@ -21,7 +21,7 @@
                 <span id="CV-text">CV</span> <span id="Project-text">Project </span>
             </p>
             <div id="function-button">
-                <form>
+                <form action="updatePage">
                     <input id="update-button" type="submit" value="Update" />
                 </form>
                 <form action="logout">

@@ -22,11 +22,11 @@ import javax.naming.NamingException;
 public class CVDAO implements Serializable {
 
     private CVDTO UserCV;
-    
-    public CVDTO getUserCV(){
+
+    public CVDTO getUserCV() {
         return this.UserCV;
     }
-    
+
     public void uploadInfor(String username) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -34,13 +34,13 @@ public class CVDAO implements Serializable {
 
         try {
             con = DBHelper.makeConnection();
-            if(con != null){
-                String sql = "select birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate from CV where username = ?";
+            if (con != null) {
+                String sql = "select username,birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate from CV where username = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
                 rs = stm.executeQuery();
-                if(rs.next()){
-//                    String ID = rs.getString("username");
+                if (rs.next()) {
+                    String ID = rs.getString("username");
 //                    Byte image = rs.getByte("image");
                     String birthday = rs.getString("birthday");
                     String fullname = rs.getString("fullname");
@@ -52,8 +52,8 @@ public class CVDAO implements Serializable {
                     String expierence = rs.getString("expierence");
                     String education = rs.getString("education");
                     String certificate = rs.getString("certificate");
-                    
-                    CVDTO cvDTO = new CVDTO(birthday, fullname, gender, phoneNumber, email, address, job, expierence, education, certificate);
+
+                    CVDTO cvDTO = new CVDTO(ID, birthday, fullname, gender, phoneNumber, email, address, job, expierence, education, certificate);
                     this.UserCV = cvDTO;
                 }
             }
@@ -69,34 +69,35 @@ public class CVDAO implements Serializable {
             }
         }
     }
-    
+
     private ArrayList<CVDTO> accounts;
-    public ArrayList<CVDTO> getAccoutns(){
+
+    public ArrayList<CVDTO> getAccoutns() {
         return accounts;
-}
-    
-    public void loadAccounts () throws SQLException, NamingException{
+    }
+
+    public void loadAccounts() throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        
-        try{
+
+        try {
             con = DBHelper.makeConnection();
-            if(con != null){
+            if (con != null) {
                 String sql = "select username, fullname from Registration";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     String username = rs.getString("username");
                     String fullname = rs.getString("fullname");
                     CVDTO dto = new CVDTO(username, fullname);
-                    if(this.accounts == null){
+                    if (this.accounts == null) {
                         this.accounts = new ArrayList<>();
                     }
                     this.accounts.add(dto);
                 }
             }
-        }finally{
+        } finally {
             if (con != null) {
                 con.close();
             }
@@ -108,27 +109,27 @@ public class CVDAO implements Serializable {
             }
         }
     }
-    
-    public boolean isAdmin(String username) throws SQLException, NamingException{
+
+    public boolean isAdmin(String username) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        
-        try{
+
+        try {
             con = DBHelper.makeConnection();
-            if(con != null){
+            if (con != null) {
                 String sql = "select role from Registration where username = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
                 rs = stm.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     String role = rs.getString("role");
-                    if(role.equals("Admin")){
+                    if (role.equals("Admin")) {
                         return true;
                     }
                 }
             }
-        }finally{
+        } finally {
             if (con != null) {
                 con.close();
             }
@@ -140,5 +141,43 @@ public class CVDAO implements Serializable {
             }
         }
         return false;
-    } 
+    }
+
+    public boolean updateInfo(CVDTO dto) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        
+        try {
+            con = DBHelper.makeConnection();
+            if(con != null){
+                String sql = "Update CV SET fullname =?, birthday =?, phoneNumber =?, email =?, address =?, job =?, expierence =?, education =?, certificate =?  "
+                        +"where username =?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, dto.getFullname());
+                stm.setString(2, dto.getBirthday());
+                stm.setString(3, dto.getPhoneNumber());
+                stm.setString(4, dto.getEmail());
+                stm.setString(5, dto.getAddress());
+                stm.setString(6, dto.getJob());
+                stm.setString(7, dto.getExpierence());
+                stm.setString(8, dto.getEducation());
+                stm.setString(9, dto.getCertificate());
+                stm.setString(10, dto.getUsername());
+                
+                int row = stm.executeUpdate();
+                if(row > 0){
+                    return true;
+                }
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            
+        }
+        return false;
+    }
 }

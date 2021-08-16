@@ -1,0 +1,143 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 16, 2021, 3:25:45 PM
+    Author     : ASUS
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  display: flex;
+  background-color: #343a40;
+  justify-content: space-between;
+  align-items: center;
+  /* position: fixed; */
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+#Project-text {
+  font-size: 50px;
+  color: #7dd56f;
+}
+#CV-text {
+  font-size: 50px;
+  color: #28b487;
+}
+
+#text-logo {
+  padding: 15px 50px;
+}
+
+#logout-button {
+  width: 110px;
+  height: 35px;
+  background: linear-gradient(to right, #28b487, #7dd56f);
+  border-radius: 30px;
+  border: 0;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 50px;
+}
+
+body {
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.fa-facebook:hover {
+  color: #295396;
+}
+
+.fa-github:hover {
+  color: #800080;
+}
+
+footer a:visited {
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.body-content {
+  flex-grow: 1;
+}
+
+footer {
+  display: flex;
+  gap: 0 30px;
+  justify-content: center;
+  font-size: 70px;
+  padding: 50px;
+  background-color: #343a40;
+}
+
+.container h1 {
+  text-align: center;
+  color: #343a40;
+  margin: 20px 0;
+  font-size: 30px;
+}
+
+#update-button {
+  width: 120px;
+  height: 45px;
+  background: linear-gradient(to right, #28b487, #7dd56f);
+  border-radius: 30px;
+  border: 0;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+
+#cancel-button {
+  width: 120px;
+  height: 45px;
+  background: white;
+  border-radius: 30px;
+  border: 2px solid #7dd56f;
+  outline: none;
+  color: #7dd56f;
+  cursor: pointer;
+}
+
+.button-decision {
+  display: flex;
+  justify-content: center;
+  gap: 0 30px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.container p {
+  color: #28b487;
+  font-weight: 600;
+}
+
+.up-info input {
+  padding: 8px;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.down-info textarea {
+  padding: 7px;
+  margin-bottom: 20px;
+  width: 100%;
+  white-space: pre;
+}
+

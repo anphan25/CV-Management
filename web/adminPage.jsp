@@ -46,12 +46,14 @@
                     <tbody>
                         <c:set var="accounts" value="${sessionScope.ACCOUNTS_LIST}"/>
                         <c:forEach var="dto" items="${accounts}" varStatus="counter">
+                        <form action="viewCV">
                             <tr>
                                 <td>
                                     ${counter.count}
                                 </td>
                                 <td>
                                     ${dto.username}
+                                    <input type="hidden" name="usernameView" value="${dto.username}" />
                                 </td>
                                 <td>
                                     ${dto.fullname}
@@ -60,7 +62,8 @@
                                     <input id="view-button" type="submit" value="View" />
                                 </td>
                             </tr>
-                        </c:forEach>
+                        </form>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

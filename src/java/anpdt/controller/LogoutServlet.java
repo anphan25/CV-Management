@@ -5,10 +5,12 @@
  */
 package anpdt.controller;
 
+import anpdt.registration.RegistrationDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,14 +36,22 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         System.out.println("test test");
-        String url ="";
+        String url = "";
         try {
             HttpSession session = request.getSession(false);
-            if(session != null){
-                session.invalidate();
+            if (session != null) {
+                String rememberCheck = (String) session.getAttribute("REMEMBER_CHECK");
+                if (rememberCheck != null) {
+                    String username = (String) session.getAttribute("USERNAME");
+                    Cookie cookie = new Cookie(username, "");
+                    cookie.setMaxAge(0);
+                    response.addCookie(cookie);
+                }
                 url = "loginPage";
+                session.invalidate();
             }
-        }finally{
+
+        } finally {
             response.sendRedirect(url);
         }
     }

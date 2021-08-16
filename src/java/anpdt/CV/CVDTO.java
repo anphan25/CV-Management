@@ -48,7 +48,9 @@ public class CVDTO implements Serializable{
         this.certificate = certificate;
     }
 
-    public CVDTO(String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
+
+    public CVDTO(String username, String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
+        this.username = username;
         this.birthday = birthday;
         this.fullname = fullname;
         this.gender = gender;
@@ -61,6 +63,20 @@ public class CVDTO implements Serializable{
         this.certificate = certificate;
     }
 
+    public CVDTO(String username, String birthday, String fullname, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
+        this.username = username;
+        this.birthday = birthday;
+        this.fullname = fullname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.job = job;
+        this.expierence = expierence;
+        this.education = education;
+        this.certificate = certificate;
+    }
+    
+    
     
     
     public String getBirthday() {

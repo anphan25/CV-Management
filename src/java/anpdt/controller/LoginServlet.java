@@ -65,6 +65,8 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 if (rememberBox != null) {
+                    session.setAttribute("USERNAME", username);
+                    session.setAttribute("REMEMBER_CHECK", rememberBox);
                     Cookie cookie = new Cookie(username, password);
                     cookie.setMaxAge(60 * 60);
                     response.addCookie(cookie);
