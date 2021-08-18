@@ -1,6 +1,6 @@
 <%-- 
-    Document   : updatePage
-    Created on : Aug 16, 2021, 3:23:33 PM
+    Document   : createCV
+    Created on : Aug 18, 2021, 11:06:23 AM
     Author     : ASUS
 --%>
 
@@ -12,7 +12,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/updatePageStyle.css" />
+        <link rel="stylesheet" href="css/createStyle.css" />
         <script
             src="https://kit.fontawesome.com/1b1fb57155.js"
             crossorigin="anonymous"
@@ -32,38 +32,35 @@
         </header>
         <section>
             <div class="container">
-                <h1>UPDATE YOUR INFORMATION</h1>
-                <form action="updateDecision">
-                    <c:set var="userCV" value="${sessionScope.USER_CV}"/>
+                <h1>CREATE YOUR CV</h1>
+                <form action="create">
                     <div class="up-info">
                         <p>Fullname</p>
-                        <input type="text" name="txtFullname" value="${userCV.fullname}" required="required"/>
+                        <input type="text" name="txtFullname" value="" required="required"/>
                         <p>Job</p>
-                        <input type="text" name="txtJob" value="${userCV.job}" required="required"/>
+                        <input type="text" name="txtJob" value="" required="required"/>
                         <p>Gender</p>
-                        <input type="text" name="txtGender" value="${userCV.gender}" required="required"/>
+                        <input type="text" name="txtGender" value="" required="required"/>
                         <p>Birthday</p>
-                        <input type="text" name="txtBirthday" value="${userCV.birthday}" required="required"/>
+                        <input type="text" name="txtBirthday" value="" required="required"/>
                         <p>Phone Number</p>
-                        <input type="text" name="txtPhone" value="${userCV.phoneNumber}" required="required"/>
+                        <input type="text" name="txtPhone" value="" required="required"/>
                         <p>Email</p>
-                        <input type="text" name="txtEmail" value="${userCV.email}" required="required"/>
+                        <input type="text" name="txtEmail" value="" required="required"/>
                         <p>Address</p>
-                        <input type="text" name="txtAddress" value="${userCV.address}" required="required"/>
+                        <input type="text" name="txtAddress" value="" required="required"/>
                     </div>
                     <div class="down-info">
                         <p>Experience</p>
-                        <textarea name="txtExperience" id="" cols="30" rows="10" required="required" >${userCV.expierence}</textarea>
+                        <textarea name="txtExperience" id="" cols="30" rows="10" required="required"></textarea>
                         <p>Education</p>
-                        <textarea name="txtEducation" id="" cols="30" rows="10" required="required">${userCV.education}</textarea>
+                        <textarea name="txtEducation" id="" cols="30" rows="10" required="required"></textarea>
                         <p>Certificate</p>
-                        <textarea name="txtCertificate" id="" cols="30" rows="10" required="required">${userCV.certificate}</textarea>     
-
+                        <textarea name="txtCertificate" id="" cols="30" rows="10" required="required"></textarea>
                     </div>
 
                     <div class="button-decision">
-                        <input id="update-button" type="submit" name="btAction" value="Update" />
-                        <input id="cancel-button" type="submit" name="btAction" value="Cancel" />
+                        <input id="update-button" type="submit" name="btAction" value="Create" />
                     </div>
                 </form>
             </div>

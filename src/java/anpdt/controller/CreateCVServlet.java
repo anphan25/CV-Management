@@ -7,25 +7,23 @@ package anpdt.controller;
 
 import anpdt.CV.CVDAO;
 import anpdt.CV.CVDTO;
-import anpdt.errors.Errors;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import anpdt.registration.RegistrationDAO;
-import java.util.ArrayList;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ASUS
  */
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "CreateCVServlet", urlPatterns = {"/CreateCVServlet"})
+public class CreateCVServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,50 +37,37 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String username = request.getParameter("txtUsername");
-        String password = request.getParameter("txtPassword");
-        String rememberBox = request.getParameter("remeberPassword");
-        HttpSession session = request.getSession(true);
-        Errors errors = new Errors();
-        String url = "";
-        try {
-            RegistrationDAO dao = new RegistrationDAO();
-            boolean result = dao.checkLogin(username, password);
-            if (result) {
-                session.setAttribute("USERNAME", username);
-                CVDAO cvDAO = new CVDAO();
-                boolean isAdmin = cvDAO.isAdmin(username);
-                if (isAdmin == true) {
-                    cvDAO.loadAccounts();
-                    ArrayList<CVDTO> accounts = cvDAO.getAccoutns();
-                    session.setAttribute("ACCOUNTS_LIST", accounts);
-                    url = "adminPage";
-                } else {
-                    cvDAO.uploadInfor(username);
-                    CVDTO cvDTO = cvDAO.getUserCV();
-                    session.setAttribute("USER_CV", cvDTO);
-                    url = "CVPage";
-                }
-
-                if (rememberBox != null) {
-                    session.setAttribute("REMEMBER_CHECK", rememberBox);
-                    Cookie cookie = new Cookie(username, password);
-                    cookie.setMaxAge(60 * 60);
-                    response.addCookie(cookie);
-                }
-            } else {
-                errors.setWrongUsernamePassword("Username or Password is not correct");
-                session.setAttribute("LOGIN_ERROR", errors);
-                url = "loginPage";
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("USERNAME");
+        String fullname = request.getParameter("txtFullname");
+        String job = request.getParameter("txtJob");
+        String birthday = request.getParameter("txtBirthday");
+        String phoneNumber = request.getParameter("txtPhone");
+        String email = request.getParameter("txtEmail");
+        String gender = request.getParameter("txtGender");
+        String address = request.getParameter("txtAddress");
+        String experience = request.getParameter("txtExperience");
+        String education = request.getParameter("txtEducation");
+        String certificate = request.getParameter("txtCertificate");
+        String url = "CVPage";
+        try  {
+            CVDTO cvDTO = new CVDTO(username, birthday, fullname, gender, phoneNumber, email, address, job, experience, education, certificate);
+            CVDAO cvDAO = new CVDAO();
+            boolean createSuccess = cvDAO.createCV(cvDTO);
+            if(createSuccess){
+                cvDAO.uploadInfor(username);
+                CVDTO infor = cvDAO.getUserCV();
+                session.setAttribute("USER_CV", infor);
             }
-        } catch (SQLException ex) {
-            log("LoginServlet _ SQL " + ex.getMessage());
-        } catch (NamingException ex) {
-            log("LoginServlet _ Naming " + ex.getMessage());
-        } finally {
-            response.sendRedirect(url);
+            
+        }catch(SQLException ex){
+            log("CreateServlet _ SQL" + ex.getMessage());
+        }catch(NamingException ex){
+            log("CreateServlet _ Naming" + ex.getMessage());
         }
+        finally{
+               response.sendRedirect(url);
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

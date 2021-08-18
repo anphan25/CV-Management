@@ -150,19 +150,20 @@ public class CVDAO implements Serializable {
         try {
             con = DBHelper.makeConnection();
             if(con != null){
-                String sql = "Update CV SET fullname =?, birthday =?, phoneNumber =?, email =?, address =?, job =?, expierence =?, education =?, certificate =?  "
+                String sql = "Update CV SET fullname =?, birthday =?,gender =?,phoneNumber =?, email =?, address =?, job =?, expierence =?, education =?, certificate =?  "
                         +"where username =?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, dto.getFullname());
                 stm.setString(2, dto.getBirthday());
-                stm.setString(3, dto.getPhoneNumber());
-                stm.setString(4, dto.getEmail());
-                stm.setString(5, dto.getAddress());
-                stm.setString(6, dto.getJob());
-                stm.setString(7, dto.getExpierence());
-                stm.setString(8, dto.getEducation());
-                stm.setString(9, dto.getCertificate());
-                stm.setString(10, dto.getUsername());
+                stm.setString(3, dto.getGender());
+                stm.setString(4, dto.getPhoneNumber());
+                stm.setString(5, dto.getEmail());
+                stm.setString(6, dto.getAddress());
+                stm.setString(7, dto.getJob());
+                stm.setString(8, dto.getExpierence());
+                stm.setString(9, dto.getEducation());
+                stm.setString(10, dto.getCertificate());
+                stm.setString(11, dto.getUsername());
                 
                 int row = stm.executeUpdate();
                 if(row > 0){
@@ -177,6 +178,44 @@ public class CVDAO implements Serializable {
                 stm.close();
             }
             
+        }
+        return false;
+    }
+    
+    public boolean createCV(CVDTO dto) throws SQLException, NamingException{
+       Connection con = null;
+        PreparedStatement stm = null;
+        
+        try{
+            con = DBHelper.makeConnection();
+            if(con != null){
+                String sql = "insert  into CV (username,birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate) "
+                        +"values(?,?,?,?,?,?,?,?,?,?,?)";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, dto.getUsername());
+                stm.setString(2, dto.getBirthday());
+                stm.setString(3, dto.getFullname());
+                stm.setString(4, dto.getGender());
+                stm.setString(5, dto.getPhoneNumber());
+                stm.setString(6, dto.getEmail());
+                stm.setString(7, dto.getAddress());
+                stm.setString(8, dto.getJob());
+                stm.setString(9, dto.getExpierence());
+                stm.setString(10, dto.getEducation());
+                stm.setString(11, dto.getCertificate());
+                
+                int row = stm.executeUpdate();
+                if(row > 0){
+                    return true;
+                }
+            }
+        }finally{
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
         }
         return false;
     }

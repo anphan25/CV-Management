@@ -42,6 +42,7 @@ public class UpdateServlet extends HttpServlet {
         String username = cvDTO.getUsername();
         String fullname = request.getParameter("txtFullname");
         String job = request.getParameter("txtJob");
+        String gender = request.getParameter("txtGender");
         String birthday = request.getParameter("txtBirthday");
         String phoneNumber = request.getParameter("txtPhone");
         String email = request.getParameter("txtEmail");
@@ -52,7 +53,7 @@ public class UpdateServlet extends HttpServlet {
  
         String url = "";
         try {
-            CVDTO dto = new CVDTO(username, birthday, fullname, phoneNumber, email, address, job, experience, education, certificate);
+            CVDTO dto = new CVDTO(username, birthday, fullname, gender, phoneNumber, email, address, job, experience, education, certificate);
             CVDAO dao = new CVDAO();
             boolean result = dao.updateInfo(dto);
             if(result){

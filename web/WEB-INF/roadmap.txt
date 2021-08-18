@@ -11,3 +11,5 @@ updatePage=updatePage.jsp
 updateDecision=UpdateDecisionServlet
 update=UpdateServlet
 cancel=CVPage.jsp
+createPage=createCV.jsp
+create=CreateCVServlet

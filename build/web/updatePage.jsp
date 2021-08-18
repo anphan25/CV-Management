@@ -25,7 +25,9 @@
                 <span id="CV-text">CV</span> <span id="Project-text">Project </span>
             </p>
             <div>
-                <button id="logout-button">Log Out</button>
+                <form action="logout">
+                    <input id="logout-button" type="submit" value="Log Out" />
+                </form>
             </div>
         </header>
         <section>
@@ -37,7 +39,9 @@
                         <p>Fullname</p>
                         <input type="text" name="txtFullname" value="${userCV.fullname}" required="required"/>
                         <p>Job</p>
-                        <input type="text" name="txtJob" value="${userCV.job}"/>
+                        <input type="text" name="txtJob" value="${userCV.job}" required="required"/>
+                        <p>Gender</p>
+                        <input type="text" name="txtGender" value="${userCV.gender}" required="required"/>
                         <p>Birthday</p>
                         <input type="text" name="txtBirthday" value="${userCV.birthday}" required="required"/>
                         <p>Phone Number</p>
@@ -49,23 +53,18 @@
                     </div>
                     <div class="down-info">
                         <p>Experience</p>
-                        <textarea name="txtExperience" id="" cols="30" rows="10" required="required" >
-                            ${userCV.expierence}
-                        </textarea>
+                        <textarea name="txtExperience" id="" cols="30" rows="10" required="required" >${userCV.expierence}</textarea>
                         <p>Education</p>
-                        <textarea name="txtEducation" id="" cols="30" rows="10" required="required">
-                            ${userCV.education}
-                        </textarea>
+                        <textarea name="txtEducation" id="" cols="30" rows="10" required="required">${userCV.education}</textarea>
                         <p>Certificate</p>
-                        <textarea name="txtCertificate" id="" cols="30" rows="10" required="required">
-                            ${userCV.certificate}
-                        </textarea>
+                        <textarea name="txtCertificate" id="" cols="30" rows="10" required="required">${userCV.certificate}</textarea>     
+
                     </div>
-                
-                <div class="button-decision">
-                    <input id="update-button" type="submit" name="btAction" value="Update" />
-                    <input id="cancel-button" type="submit" name="btAction" value="Cancel" />
-                </div>
+
+                    <div class="button-decision">
+                        <input id="update-button" type="submit" name="btAction" value="Update" />
+                        <input id="cancel-button" type="submit" name="btAction" value="Cancel" />
+                    </div>
                 </form>
             </div>
         </section>

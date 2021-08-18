@@ -192,3 +192,23 @@ footer a:visited {
   padding-bottom: 20px;
   color: #28b487;
 }
+
+.container-sub{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    justify-content: center;
+}
+
+.container-sub h1{
+    font-weight: 800;
+    color: #343a40;
+    margin-bottom: 40px;
+    font-size: 40px;
+}
+
+.right-div-content p{
+    white-space: pre;
+}
