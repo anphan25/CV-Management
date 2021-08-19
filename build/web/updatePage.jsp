@@ -33,7 +33,7 @@
         <section>
             <div class="container">
                 <h1>UPDATE YOUR INFORMATION</h1>
-                <form action="updateDecision">
+                <form action="updateDecision" method="POST">
                     <c:set var="userCV" value="${sessionScope.USER_CV}"/>
                     <div class="up-info">
                         <p>Fullname</p>

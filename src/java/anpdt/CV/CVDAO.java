@@ -219,4 +219,45 @@ public class CVDAO implements Serializable {
         }
         return false;
     }
+    public void deleteAccount(String username) throws SQLException, NamingException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            con = DBHelper.makeConnection();
+            if(con != null){
+                String sql= "delete from Registration where username =?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+                int row = stm.executeUpdate();
+            }
+        }finally{
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
+    }
+    
+    public void deleteCV(String username) throws SQLException, NamingException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        try{
+            con = DBHelper.makeConnection();
+            if(con != null){
+                String sql= "delete from CV where username =?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+                int row = stm.executeUpdate();
+            }
+        }finally{
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
+    }
 }

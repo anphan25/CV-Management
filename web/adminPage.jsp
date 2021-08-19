@@ -40,13 +40,13 @@
                             <th>No.</th>
                             <th>Username</th>
                             <th>Fullname</th>
-                            <th>Action</th>
+                            <th colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:set var="accounts" value="${sessionScope.ACCOUNTS_LIST}"/>
                         <c:forEach var="dto" items="${accounts}" varStatus="counter">
-                        <form action="viewCV">
+                        <form action="viewOrDelete">
                             <tr>
                                 <td>
                                     ${counter.count}
@@ -59,7 +59,10 @@
                                     ${dto.fullname}
                                 </td>
                                 <td>
-                                    <input id="view-button" type="submit" value="View" />
+                                    <input id="view-button" name="btAction" type="submit" value="View" />
+                                </td>
+                                <td>
+                                    <input id="view-button" name="btAction" type="submit" value="Delete" />
                                 </td>
                             </tr>
                         </form>

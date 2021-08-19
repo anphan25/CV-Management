@@ -33,7 +33,7 @@
         <section>
             <div class="container">
                 <h1>CREATE YOUR CV</h1>
-                <form action="create">
+                <form action="create" method="POST">
                     <div class="up-info">
                         <p>Fullname</p>
                         <input type="text" name="txtFullname" value="" required="required"/>

@@ -13,3 +13,5 @@ update=UpdateServlet
 cancel=CVPage.jsp
 createPage=createCV.jsp
 create=CreateCVServlet
+viewOrDelete=ViewOrDeleteServlet
+delete=DeleteCVServlet

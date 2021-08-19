@@ -96,6 +96,7 @@ footer a:visited {
   outline: none;
   color: white;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 table {
