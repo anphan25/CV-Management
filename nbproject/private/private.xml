@@ -10,14 +10,15 @@
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/login.jsp</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/filter/FilterServlet.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/CV/CVDAO.java</file>
+            <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/DeleteCVServlet.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/css/CVPageStyle.css</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/RememberPasswordServlet.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/LoginServlet.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/CV/CVDTO.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/CVPage.jsp</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/registration/RegistrationDTO.java</file>
-            <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/adminPage.jsp</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/css/updatePageStyle.css</file>
+            <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/adminPage.jsp</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/CreateAccountServlet.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/updatePage.jsp</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/listener/MyServletListener.java</file>
@@ -30,6 +31,7 @@
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/css/style.css</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/web/css/registerStyle.css</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/UpdateServlet.java</file>
+            <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/ViewOrDeleteServlet.java</file>
             <file>file:/D:/WorkSpace/Java/JavaWeb/CVManagerProject/src/java/anpdt/controller/CreateCVServlet.java</file>
         </group>
     </open-files>

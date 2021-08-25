@@ -59,10 +59,10 @@
                                     ${dto.fullname}
                                 </td>
                                 <td>
-                                    <input id="view-button" name="btAction" type="submit" value="View" />
+                                    <input class="view-button btn" name="btAction" type="submit" value="View" />
                                 </td>
                                 <td>
-                                    <input id="view-button" name="btAction" type="submit" value="Delete" />
+                                    <input class="view-button btn" name="btAction" type="submit" value="Delete" />
                                 </td>
                             </tr>
                         </form>

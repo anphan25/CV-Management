@@ -57,10 +57,12 @@ body {
 
 .fa-facebook:hover {
   color: #295396;
+  transition: 0.3s;
 }
 
 .fa-github:hover {
   color: #800080;
+  transition: 0.3s;
 }
 
 footer a:visited {
@@ -92,7 +94,7 @@ footer {
   font-size: 30px;
 }
 
-#update-button {
+.update-button {
   width: 120px;
   height: 45px;
   background: linear-gradient(to right, #28b487, #7dd56f);
@@ -103,7 +105,7 @@ footer {
   cursor: pointer;
 }
 
-#cancel-button {
+.cancel-button {
   width: 120px;
   height: 45px;
   background: white;
@@ -141,3 +143,7 @@ footer {
 /*  white-space: pre;*/
 }
 
+.btn:hover{
+    box-shadow: 2px 2px 8px #888888;
+    transition: 0.3s;
+}

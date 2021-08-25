@@ -68,10 +68,12 @@ footer {
 
 .fa-facebook:hover {
   color: #295396;
+  transition: 0.3s;
 }
 
 .fa-github:hover {
   color: #800080;
+  transition: 0.3s;
 }
 
 footer a:visited {
@@ -87,7 +89,7 @@ footer a:visited {
   flex-grow: 1;
 }
 
-#view-button {
+.view-button {
   width: 110px;
   height: 35px;
   background: linear-gradient(to right, #28b487, #7dd56f);
@@ -123,4 +125,9 @@ table tbody td {
   color: #343a40;
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+.btn:hover{
+    box-shadow: 2px 2px 8px #888888;
+    transition: 0.3s;
 }

@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="button-decision">
-                        <input id="update-button" type="submit" name="btAction" value="Create" />
+                        <input id="update-button btn" type="submit" name="btAction" value="Create" />
                     </div>
                 </form>
             </div>

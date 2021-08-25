@@ -55,7 +55,7 @@
                         <p>${errors.notCheckedAcceptBox}</p>
                     </font>
                 </c:if>
-                <input class="register-button" type="submit" value="Register" />
+                <input class="register-button btn" type="submit" value="Register" />
             </form>
         </div>
     </body>

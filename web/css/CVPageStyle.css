@@ -171,10 +171,12 @@ footer {
 
 .fa-facebook:hover{
     color:#295396 ;
+    transition: 0.3s;
 }
 
 .fa-github:hover{
     color:#800080;
+    transition: 0.3s;
 }
 
 footer a:visited {
@@ -211,4 +213,9 @@ footer a:visited {
 
 .right-div-content p{
     white-space: pre;
+}
+
+.btn:hover{
+    box-shadow: 2px 2px 8px #888888;
+    transition: 0.3s;
 }

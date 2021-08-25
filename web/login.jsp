@@ -29,7 +29,7 @@
                 <div class="remember-password">
                     <input type="checkbox" name="remeberPassword" value="ON" /> Remember Password<br/>
                 </div>
-                <input class="login-button" type="submit" value="Login" />
+                <input class="login-button btn" type="submit" value="Login" />
                 <div class="create-link">
                 <a href="createAccountPage">Create an Account</a>
                 </div>

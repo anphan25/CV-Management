@@ -91,7 +91,7 @@
             <div class="container-sub">
                 <h1>YOU DON'T HAVE CV</h1>
                 <form action="createPage">
-                    <input id="logout-button" type="submit" value="Create One" />
+                    <input id="logout-button btn" type="submit" value="Create One" />
                 </form>
             </div>
             <footer>

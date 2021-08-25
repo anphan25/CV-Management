@@ -62,8 +62,8 @@
                     </div>
 
                     <div class="button-decision">
-                        <input id="update-button" type="submit" name="btAction" value="Update" />
-                        <input id="cancel-button" type="submit" name="btAction" value="Cancel" />
+                        <input class="update-button btn" type="submit" name="btAction" value="Update" />
+                        <input class="cancel-button btn" type="submit" name="btAction" value="Cancel" />
                     </div>
                 </form>
             </div>
