@@ -39,7 +39,7 @@
                 <div class="body">
                     <div class="body-left">
                         <div class="img">
-                            <img src="image/messi.jpg" alt="" />
+                            <img src="${userCV.image}" alt="" />
                         </div>
                         <div class="left-infor">
                             <div class="left-infor-div">
@@ -99,6 +99,6 @@
                 <a href="https://github.com/anphan25"><i class="fab fa-github"></i></a>
             </footer>
         </c:if>
-
+            
     </body>
 </html>

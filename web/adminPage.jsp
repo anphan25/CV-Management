@@ -59,7 +59,8 @@
                                     ${dto.fullname}
                                 </td>
                                 <td>
-                                    <input class="view-button btn" name="btAction" type="submit" value="View" />
+                                    <button class="view-button btn" type="submit" name="btAction" value="View">View</button>
+<!--                                    <input class="view-button btn" name="btAction" type="submit" value="View" />-->
                                 </td>
                                 <td>
                                     <input class="view-button btn" name="btAction" type="submit" value="Delete" />

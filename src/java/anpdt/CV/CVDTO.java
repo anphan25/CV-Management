@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class CVDTO implements Serializable{
     private String username;
-    private byte image;
+    private String image;
     private String birthday;
     private String fullname;
     private String gender;
@@ -33,34 +33,21 @@ public class CVDTO implements Serializable{
         this.fullname = fullname;
     }
     
-    public CVDTO(String username, byte image, String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
+
+
+    public CVDTO(String username, String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate, String image) {
         this.username = username;
+        this.birthday = birthday;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.job = job;
+        this.expierence = expierence;
+        this.education = education;
+        this.certificate = certificate;
         this.image = image;
-        this.birthday = birthday;
-        this.fullname = fullname;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.job = job;
-        this.expierence = expierence;
-        this.education = education;
-        this.certificate = certificate;
-    }
-
-
-    public CVDTO(String username, String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
-        this.username = username;
-        this.birthday = birthday;
-        this.fullname = fullname;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.job = job;
-        this.expierence = expierence;
-        this.education = education;
-        this.certificate = certificate;
     }
 
     public CVDTO(String username, String birthday, String fullname, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
@@ -75,6 +62,21 @@ public class CVDTO implements Serializable{
         this.education = education;
         this.certificate = certificate;
     }
+
+    public CVDTO(String username, String birthday, String fullname, String gender, String phoneNumber, String email, String address, String job, String expierence, String education, String certificate) {
+        this.username = username;
+        this.birthday = birthday;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.job = job;
+        this.expierence = expierence;
+        this.education = education;
+        this.certificate = certificate;
+    }
+    
     
     
     
@@ -97,13 +99,15 @@ public class CVDTO implements Serializable{
         this.username = username;
     }
 
-    public byte getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte image) {
+    public void setImage(String image) {
         this.image = image;
     }
+
+
 
     public String getFullname() {
         return fullname;

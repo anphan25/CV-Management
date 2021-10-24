@@ -35,7 +35,7 @@ public class CVDAO implements Serializable {
         try {
             con = DBHelper.makeConnection();
             if (con != null) {
-                String sql = "select username,birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate from CV where username = ?";
+                String sql = "select image,username,birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate from CV where username = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
                 rs = stm.executeQuery();
@@ -52,8 +52,9 @@ public class CVDAO implements Serializable {
                     String expierence = rs.getString("expierence");
                     String education = rs.getString("education");
                     String certificate = rs.getString("certificate");
+                    String image = rs.getString("image");
 
-                    CVDTO cvDTO = new CVDTO(ID, birthday, fullname, gender, phoneNumber, email, address, job, expierence, education, certificate);
+                    CVDTO cvDTO = new CVDTO(ID, birthday, fullname, gender, phoneNumber, email, address, job, expierence, education, certificate,image);
                     this.UserCV = cvDTO;
                 }
             }
@@ -189,20 +190,21 @@ public class CVDAO implements Serializable {
         try{
             con = DBHelper.makeConnection();
             if(con != null){
-                String sql = "insert  into CV (username,birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate) "
-                        +"values(?,?,?,?,?,?,?,?,?,?,?)";
+                String sql = "insert  into CV (username,image,birthday,fullname,gender,phoneNumber,email,address,job,expierence,education,certificate) "
+                        +"values(?,?,?,?,?,?,?,?,?,?,?,?)";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, dto.getUsername());
-                stm.setString(2, dto.getBirthday());
-                stm.setString(3, dto.getFullname());
-                stm.setString(4, dto.getGender());
-                stm.setString(5, dto.getPhoneNumber());
-                stm.setString(6, dto.getEmail());
-                stm.setString(7, dto.getAddress());
-                stm.setString(8, dto.getJob());
-                stm.setString(9, dto.getExpierence());
-                stm.setString(10, dto.getEducation());
-                stm.setString(11, dto.getCertificate());
+                stm.setString(2, dto.getImage());
+                stm.setString(3, dto.getBirthday());
+                stm.setString(4, dto.getFullname());
+                stm.setString(5, dto.getGender());
+                stm.setString(6, dto.getPhoneNumber());
+                stm.setString(7, dto.getEmail());
+                stm.setString(8, dto.getAddress());
+                stm.setString(9, dto.getJob());
+                stm.setString(10, dto.getExpierence());
+                stm.setString(11, dto.getEducation());
+                stm.setString(12, dto.getCertificate());
                 
                 int row = stm.executeUpdate();
                 if(row > 0){

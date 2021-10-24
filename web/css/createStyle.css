@@ -138,10 +138,28 @@ footer {
   padding: 7px;
   margin-bottom: 20px;
   width: 100%;
-/*  white-space: pre;*/
+  /*  white-space: pre;*/
 }
 
-.btn:hover{
-    box-shadow: 2px 2px 8px #888888;
-    transition: 0.3s;
+.btn:hover {
+  box-shadow: 2px 2px 8px #888888;
+  transition: 0.3s;
+}
+
+#upload-btn {
+  width: 100px;
+  height: 40px;
+  background-color: #000;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.avt-div {
+  text-align: center;
+}
+
+.avt-display {
+  display: block;
+  margin: 0 auto;
 }

@@ -49,9 +49,10 @@ public class CreateCVServlet extends HttpServlet {
         String experience = request.getParameter("txtExperience");
         String education = request.getParameter("txtEducation");
         String certificate = request.getParameter("txtCertificate");
+        String image = request.getParameter("image");
         String url = "CVPage";
         try  {
-            CVDTO cvDTO = new CVDTO(username, birthday, fullname, gender, phoneNumber, email, address, job, experience, education, certificate);
+            CVDTO cvDTO = new CVDTO(username, birthday, fullname, gender, phoneNumber, email, address, job, experience, education, certificate,image);
             CVDAO cvDAO = new CVDAO();
             boolean createSuccess = cvDAO.createCV(cvDTO);
             if(createSuccess){
